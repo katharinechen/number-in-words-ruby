@@ -11,6 +11,14 @@ def numbers_in_words(number)
 	}
 	
 	case
+	when (1000000000000..999999999999999).include?(number)
+		return numbers_in_words(number/1000000000000) + " trillion " + numbers_in_words(number%1000000000000)
+	when (1000000000..999999999999).include?(number)
+		return numbers_in_words(number/1000000000) + " billion " + numbers_in_words(number%1000000000)
+	when (1000000..999999999).include?(number)
+		return numbers_in_words(number/1000000) + " million " + numbers_in_words(number%1000000)
+	when (1000..999999).include?(number)
+		return numbers_in_words(number/1000) + " thousand " + numbers_in_words(number%1000)
 	when (100..999).include?(number)
 		return number_hash[number/100] + " hundred " + numbers_in_words(number%100)
 	when (21..99).include?(number)
@@ -30,4 +38,4 @@ def numbers_in_words(number)
 
 end
 
-puts numbers_in_words(128) 
+puts numbers_in_words(123456) 
