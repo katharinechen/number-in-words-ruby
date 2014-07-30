@@ -15,26 +15,16 @@ def numbers_in_words(number)
 					1_000_000_000 => "billion", 
 					1_000_000 => "million", 
 					1_000 => "thousand", 
-					100 => "hundred" } 	
-
-
-
-	# if number > 100 
-	# 	scale_hash.each do |key, value| 
-	# 		if number/key > 0
-	# 			return "#{number_hash[number/key]} #{value} #{numbers_in_words(number%key)}" if number%key != 0 
-	# 			return "#{number_hash[number/key]} #{value}"
-	# 		end  
-	# 	end  
-	# end
-
+					100 => "hundred" } 
 
 	if number > 100 
-		if number/100 > 0 
-			return "#{number_hash[number/100]} hundred #{numbers_in_words(number%100)}" if number%100 != 0 
-			return "#{number_hash[number/100]} hundred"
-		end
-	end 
+		scale_hash.each do |key, value| 
+			if number/key > 0
+				return "#{numbers_in_words(number/key)} #{value} #{numbers_in_words(number%key)}" if number%key != 0 
+				return "#{numbers_in_words(number/key)} #{value}"
+			end  
+		end  
+	end
 
 	if number < 100 && (number_hash.has_key?(number) == false )
 		return "#{number_hash[number/10 * 10]} " + numbers_in_words(number%10) if number%10 != 0 
@@ -45,15 +35,7 @@ def numbers_in_words(number)
 end
 
 
-puts numbers_in_words(425)
-
-
-
-
-
-
-
-
+puts numbers_in_words(123425)
 
 
 
